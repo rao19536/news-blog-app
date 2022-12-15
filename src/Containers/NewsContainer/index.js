@@ -1,8 +1,13 @@
 import React from 'react'
+import BasicTabs from '../../Components/TabsComponent'
+import {categoryArr} from '../../FakeApi'
 
 const NewsContainer = () => {
+  console.log('categoryArr=>', categoryArr)
   return (
-    <div>index</div>
+    <>
+    <BasicTabs />
+    </>
   )
 }
 export default NewsContainer
