@@ -1,15 +1,19 @@
-import React,{useState, useMemo} from 'react';
-import ThemeMode from './Components/ChangeTheme/ThemeMode';
-import Theme from './Components/ChangeTheme/ThemeComponent/Theme';
+import React,{useState, useMemo} from 'react'
+import ThemeMode from './Components/ChangeTheme/ThemeMode'
+import Theme from './Components/ChangeTheme/ThemeComponent/Theme'
 import ChangeThemeButton from './Components/ChangeTheme/ChangeThemeButtonComponent'
-import { Container } from '@mui/system'
-import Header from './Components/HeaderComponent';
+import Header from './Components/HeaderComponent'
 import NewsContainer from './Containers/NewsContainer'
+import {
+  QueryClientProvider,
+  QueryClient
+} from 'react-query'
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 export default function App() {
-  const [mode, setMode] = useState('light');
+  const [mode, setMode] = useState('light')
+  const queryClient = new QueryClient()
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
@@ -20,23 +24,19 @@ export default function App() {
   );
   return (
     <>
-      <Header>
-        
-      </Header>
-      
-      {/* <Container> */}
-      
-        <ColorModeContext.Provider value={colorMode}>
-          <Theme mode={mode}>
-            <ThemeMode>
-              <ChangeThemeButton 
-                ColorModeContext={ColorModeContext}
-              />
-              <NewsContainer />
-            </ThemeMode>
-          </Theme>
-        </ColorModeContext.Provider>
-      {/* </Container> */}
+      <QueryClientProvider client={queryClient}>
+        <Header />
+          <ColorModeContext.Provider value={colorMode}>
+            <Theme mode={mode}>
+              <ThemeMode>
+                <ChangeThemeButton 
+                  ColorModeContext={ColorModeContext}
+                />
+                <NewsContainer />
+              </ThemeMode>
+            </Theme>
+          </ColorModeContext.Provider>
+        </QueryClientProvider>
     </>
   );
 }

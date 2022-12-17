@@ -1,12 +1,24 @@
 import React from 'react'
-import BasicTabs from '../../Components/TabsComponent'
-import {categoryArr} from '../../FakeApi'
+import TabsComponent from '../../Components/TabsComponent'
+import SpinnerComponent from '../../Components/SpinnerComponent'
+import { getApiRequest } from '../../ReactQuery/BaseFunction'
+import {useQuery} from 'react-query'
 
 const NewsContainer = () => {
-  console.log('categoryArr=>', categoryArr)
+  const getApiUrl = 'https://fakestoreapi.com/products/categories'
+  const {data, error, isLoading} = useQuery(['categoryApi'],
+  () => getApiRequest(getApiUrl))
+  if (error) return <div>Request Failed</div>
+	if (isLoading) return <SpinnerComponent />
+  const getCategoryNameFunc = (data) => {
+    alert(data)
+  }
   return (
     <>
-    <BasicTabs />
+      <TabsComponent
+        data={data?.data}
+        getCategoryNameFunc={getCategoryNameFunc}
+      />
     </>
   )
 }
