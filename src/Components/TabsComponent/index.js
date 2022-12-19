@@ -6,6 +6,7 @@ import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 import SpinnerComponent from '../SpinnerComponent'
 import CategoryCard from '../CardComponents/CategoryCard'
+import ApiFailComponent from '../APIFailComponent/'
 import * as Style from './style'
 
 export default function TabsComponent({data, specificCategory, getCategoryNameFunc}) {
@@ -23,13 +24,14 @@ export default function TabsComponent({data, specificCategory, getCategoryNameFu
     {value && (
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
+          <TabList onChange={handleChange}>
           {data?.map((val, index)=>(
               <Tab label={val} value={val} key={index} />
           ))}
           </TabList>
         </Box>
-          {!specificCategory?.isLoading && !specificCategory?.isFetching ? (
+          {!specificCategory?.isLoading && !specificCategory?.isFetching ?
+            !specificCategory.error ? (
             <TabPanel value={value}>
                 <Style.StyledCardParent>
                   {specificCategory?.data?.map((val, index)=>(
@@ -37,7 +39,9 @@ export default function TabsComponent({data, specificCategory, getCategoryNameFu
                   ))}
                 </Style.StyledCardParent>
             </TabPanel>
-          ) : (
+          ) :(
+            <ApiFailComponent />
+          ): (
             <SpinnerComponent />
           )}
       </TabContext>

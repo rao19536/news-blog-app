@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import TabsComponent from '../../Components/TabsComponent'
 import SpinnerComponent from '../../Components/SpinnerComponent'
 import { getApiRequest } from '../../ReactQuery/BaseFunction'
+import APIFailComponent from '../../Components/APIFailComponent'
 import { useQueries } from '@tanstack/react-query'
 
 const NewsContainer = () => {
@@ -27,8 +28,9 @@ const NewsContainer = () => {
   useEffect(() => {
     specificCategory.refetch()
   }, [categoryName])
-  if (getAllCategories.error) return <div>Request Failed</div>
+  if (getAllCategories.error) return <APIFailComponent />
 	if (getAllCategories.isLoading) return <SpinnerComponent />
+
   return (
     <>
       <TabsComponent
