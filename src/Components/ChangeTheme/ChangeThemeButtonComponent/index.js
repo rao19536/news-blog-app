@@ -8,7 +8,6 @@ import Brightness7Icon from '@mui/icons-material/Brightness7'
 const ChangeThemeButton = ({ColorModeContext}) => {
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext)
-  console.log('ColorModeContext=>', ColorModeContext)
   return (
     <Style.StyledBox>
       <Style.StyledTypography>

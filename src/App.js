@@ -4,10 +4,11 @@ import Theme from './Components/ChangeTheme/ThemeComponent/Theme'
 import ChangeThemeButton from './Components/ChangeTheme/ChangeThemeButtonComponent'
 import Header from './Components/HeaderComponent'
 import NewsContainer from './Containers/NewsContainer'
-import {
-  QueryClientProvider,
-  QueryClient
-} from 'react-query'
+// import {
+//   QueryClientProvider,
+//   QueryClient
+// } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 

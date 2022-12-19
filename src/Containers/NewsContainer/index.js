@@ -1,23 +1,40 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import TabsComponent from '../../Components/TabsComponent'
 import SpinnerComponent from '../../Components/SpinnerComponent'
 import { getApiRequest } from '../../ReactQuery/BaseFunction'
-import {useQuery} from 'react-query'
+import { useQueries } from '@tanstack/react-query'
 
 const NewsContainer = () => {
+  const [categoryName, setCategoryName] = useState('electronics')
   const getApiUrl = 'https://fakestoreapi.com/products/categories'
-  const {data, error, isLoading} = useQuery(['categoryApi'],
-  () => getApiRequest(getApiUrl))
-  if (error) return <div>Request Failed</div>
-	if (isLoading) return <SpinnerComponent />
+  
+  const [getAllCategories, specificCategory] = useQueries({
+    queries: [
+      {
+        queryKey: ['allCategories'],
+        queryFn: () => getApiRequest(getApiUrl),
+      },
+
+      {
+        queryKey: ['specific_category'],
+        queryFn: () => getApiRequest(`https://fakestoreapi.com/products/category/${categoryName}`)
+      },
+    ],
+  });
   const getCategoryNameFunc = (data) => {
-    alert(data)
+    setCategoryName(data)
   }
+  useEffect(() => {
+    specificCategory.refetch()
+  }, [categoryName])
+  if (getAllCategories.error) return <div>Request Failed</div>
+	if (getAllCategories.isLoading) return <SpinnerComponent />
   return (
     <>
       <TabsComponent
-        data={data?.data}
+        data={getAllCategories?.data}
         getCategoryNameFunc={getCategoryNameFunc}
+        specificCategory={specificCategory}
       />
     </>
   )
