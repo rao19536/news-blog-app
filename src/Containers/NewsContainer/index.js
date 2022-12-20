@@ -21,7 +21,7 @@ const NewsContainer = () => {
         queryFn: () => getApiRequest(`https://fakestoreapi.com/products/category/${categoryName}`)
       },
     ],
-  });
+  })
   const getCategoryNameFunc = (data) => {
     setCategoryName(data)
   }
