@@ -11,7 +11,7 @@ export const getDesignTokens = (mode) => ({
     ...(mode === 'dark' && {
       background: {
         default: 'rgba(0, 0, 0, 0.87)',
-        paper: deepOrange[900],
+        paper: 'light-blue',
       },
     }),
     text: {
