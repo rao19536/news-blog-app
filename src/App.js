@@ -3,7 +3,7 @@ import ThemeMode from './Components/ChangeTheme/ThemeMode'
 import Theme from './Components/ChangeTheme/ThemeComponent/Theme'
 import ChangeThemeButton from './Components/ChangeTheme/ChangeThemeButtonComponent'
 import Header from './Components/HeaderComponent'
-import NewsContainer from './Containers/NewsContainer'
+import CategoryContainer from './Containers/CategoryContainer'
 // import {
 //   QueryClientProvider,
 //   QueryClient
@@ -33,7 +33,7 @@ export default function App() {
                 <ChangeThemeButton 
                   ColorModeContext={ColorModeContext}
                 />
-                <NewsContainer />
+                <CategoryContainer />
               </ThemeMode>
             </Theme>
           </ColorModeContext.Provider>

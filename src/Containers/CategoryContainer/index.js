@@ -5,7 +5,7 @@ import { getApiRequest } from '../../ReactQuery/BaseFunction'
 import APIFailComponent from '../../Components/APIFailComponent'
 import { useQueries } from '@tanstack/react-query'
 
-const NewsContainer = () => {
+const CategoryContainer = () => {
   const [categoryName, setCategoryName] = useState('electronics')
   const getApiUrl = 'https://fakestoreapi.com/products/categories'
   
@@ -41,4 +41,4 @@ const NewsContainer = () => {
     </>
   )
 }
-export default NewsContainer
+export default CategoryContainer

@@ -9,7 +9,8 @@ export const StyledTitle = styled(Typography)(({theme})=>({
     color:theme.palette.text.primary,
     fontWeight:500
 }))
-export const StyledDescription = styled(Typography)(()=>({
+export const StyledDescription = styled(Typography)(({theme})=>({
+    color:theme.palette.text.secondary,
     fontSize:'14px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -29,6 +30,7 @@ export const StyledCard = styled(Card)(()=>({
 }))
 export const StyledCardMedia = styled(CardMedia)(()=>({
     objectFit:'contain',
+    marginTop:20,
     transition: '0.5s all ease-in-out',
     '&:hover':{
         transform: 'scale(1.1)',
@@ -44,4 +46,4 @@ export const LightTooltip = styled(({ className, ...props }) => (
       boxShadow: theme.shadows[1],
       fontSize: 11,
     },
-  }));
+}));
